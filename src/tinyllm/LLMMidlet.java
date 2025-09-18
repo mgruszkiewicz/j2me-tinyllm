@@ -54,7 +54,7 @@ public class LLMMidlet extends MIDlet implements CommandListener {
 
     // Default configuration - update these for your setup
     private String proxyUrl = "http://litellm.issei.space:4000";
-    private String proxyKey = "sk-eHCygV4zQ6KbbwTVEPwafw";
+    private String proxyKey = "sk-xxxx";
     private String currentModel = "openrouter/qwen/qwen3-30b-a3b";
     
     public void startApp() {
