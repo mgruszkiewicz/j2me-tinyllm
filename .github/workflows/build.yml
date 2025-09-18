@@ -21,8 +21,8 @@ jobs:
 
     - name: Install Ant
       run: |
-        apt-get update
-        apt-get install -y ant
+        sudo apt-get update
+        sudo apt-get install -y ant
 
     - name: Build project
       run: |
