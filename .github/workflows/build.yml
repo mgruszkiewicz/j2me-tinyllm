@@ -1,0 +1,36 @@
+name: Build J2ME Project
+
+on:
+  push:
+    branches: [ main, future ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'zulu'
+
+    - name: Install Ant
+      run: |
+        apt-get update
+        apt-get install -y ant
+
+    - name: Build project
+      run: |
+        ant clean
+        ant build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: tinyllm-jar
+        path: dist/*.jar

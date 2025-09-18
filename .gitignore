@@ -1,0 +1,28 @@
+# NetBeans
+nbproject/private/
+build/
+dist/
+nbbuild/
+nbdist/
+
+# Compiled class files
+*.class
+
+# J2ME build artifacts
+*.jad
+*.jar
+
+# IDE files
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
