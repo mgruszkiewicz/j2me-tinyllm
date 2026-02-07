@@ -46,8 +46,17 @@ build:
 		$(shell find $(SRC_DIR) -name "*.java")
 	@echo "Preverifying classes..."
 	$(WTK_HOME)/bin/preverify -classpath $(CLASSPATH) -d $(BUILD_DIR) $(BUILD_DIR)
-	@echo "Creating JAR archive..."
-	cd $(BUILD_DIR) && $(JAVA_HOME)/bin/jar cvf ../$(JAR_FILE) .
+	@echo "Creating JAR archive with manifest..."
+	cd $(BUILD_DIR) && \
+		echo "MIDlet-Name: $(PROJECT_NAME)" > manifest.mf && \
+		echo "MIDlet-Version: 1.0.0" >> manifest.mf && \
+		echo "MIDlet-Vendor: TinyLLM" >> manifest.mf && \
+		echo "MIDlet-1: $(PROJECT_NAME),,$(MIDLET_CLASS)" >> manifest.mf && \
+		echo "MicroEdition-Configuration: CLDC-1.1" >> manifest.mf && \
+		echo "MicroEdition-Profile: MIDP-2.0" >> manifest.mf && \
+		echo "MIDlet-Permissions: javax.microedition.io.Connector.http" >> manifest.mf && \
+		echo "" >> manifest.mf && \
+		$(JAVA_HOME)/bin/jar cvfm ../$(JAR_FILE) manifest.mf .
 	@echo "Generating JAD descriptor..."
 	@echo "MIDlet-Name: $(PROJECT_NAME)" > $(JAD_FILE)
 	@echo "MIDlet-Version: 1.0.0" >> $(JAD_FILE)
